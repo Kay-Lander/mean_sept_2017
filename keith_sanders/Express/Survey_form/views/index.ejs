@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link rel=stylesheet href=/static/css/style.css>
+  </head>
+  <body>
+    <div id='wrapper'>
+      <h1>Survey Form:</h1>
+        <div id='box'>
+          <form action = '/login' method='post'>
+            <div class=option>
+              <label>Your Name:</label>
+              <input type=text name= 'name'>
+            </div>
+            <div class=option>
+              <label>Dojo Location:</label>
+              <select name="location">
+                  <option value='dallas'>Dallas</option>
+                  <option value="seattle">Seattle</option>
+                  <option value="los angeles">Los Angeles</option>
+                  <option value="chicago">Chicago</option>
+                  </select>
+            </div>
+            <div class=option>
+              <label>Favortie Language:</label>
+               <select name="language">
+                  <option value="python">Python</option>
+                  <option value="c++">C++</option>
+                  <option value="ruby">Ruby</option>
+                  <option value="java">Java</option>
+                  </select>
+            </div>
+            <div class=option>
+              <label>Comments (optional):</label>
+              <div id=com>
+               <textarea name="comment">
+                  </textarea>
+              </div>
+            </div>
+            <div class=option>
+              <input type='submit' value='create survey'>
+            </div>
+          </form>
+        </div>
+      </div>
+  </body>
+</html>

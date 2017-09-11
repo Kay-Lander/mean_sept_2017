@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Survey Form</title>
+    <link rel=stylesheet href=/static/css/style.css>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="socket.js"></script>
+  </head>
+  <body>
+    <div id='notes'>
+    </div>
+    <div id='num'>
+    </div>
+    <div id='wrapper'>
+      <h1>Survey Form:</h1>
+        <div id='box'>
+          <form id='Surveymade' >
+            <div class=option>
+              <label>Your Name:</label>
+              <input type=text name= 'name' id='name'>
+            </div>
+            <div class=option>
+              <label>Dojo Location:</label>
+              <select name="location" id='loc'>
+                  <option value='dallas'>Dallas</option>
+                  <option value="seattle">Seattle</option>
+                  <option value="los angeles">Los Angeles</option>
+                  <option value="chicago">Chicago</option>
+                  </select>
+            </div>
+            <div class=option>
+              <label>Favortie Language:</label>
+               <select name="language" id='lan'>
+                  <option value="python">Python</option>
+                  <option value="c++">C++</option>
+                  <option value="ruby">Ruby</option>
+                  <option value="java">Java</option>
+                  </select>
+            </div>
+            <div class=option>
+              <label>Comments (optional):</label>
+              <div id=com>
+               <textarea name="comment" id='comm'>
+                  </textarea>
+              </div>
+            </div>
+            <div class=option>
+              <input type='submit' value='create survey'>
+            </div>
+          </form>
+        </div>
+      </div>
+  </body>
+</html>
