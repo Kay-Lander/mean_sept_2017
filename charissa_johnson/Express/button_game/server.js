@@ -4,18 +4,17 @@ let session = require('express-session');
 let port = 8000;
 let app = express();
 
-//middleware
+//set up middleware
+app.use(express.static(__dirname + '/static'))
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
-
-app.use(express.static(__dirname + '/static'))
 app.use(session({
-	secret: 'as;ldkfjas;dfklj',
+	secret: "dsajfkldsfjkdhfas",
 	resave: false,
 	saveUninitialized: true
 }))
 
-let server = app.listen(port, () => console.log(`listening on port ${port}...`));
+let server = app.listen(port, () => console.log(`listening in port ${port}`));
 
 app.get('/', (req, res) => {
 	res.render('index')
@@ -27,16 +26,15 @@ io.sockets.on('connection', (socket) => {
 	console.log('socket connection!!');
 	console.log(`socket id: ${socket.id}`);
 	//listener
-	socket.on('button_clicked', (data) => {
-		console.log('received event from client')
+	socket.on('button_clicked', function(data) {
 		//emit
-		socket.broadcast.emit('button_response', { msg: 'Somebody clicked a button' })
+		console.log('count by' + socket.id);
+		socket.emit('button_response', { msg: 'Button has been clicked'})
 	})
-	//listener
-	socket.on('form_submission', (data) => {
-		console.log('recvd event from client');
+	//reset
+	socket.on('reset_clicked', function(data) {
 		//emit
-		io.emit('form_response', { msg: `${data.user} filled out the form` })
+		console.log('count by' + socket.id);
+		socket.emit('reset_response', { msg: 'Button has been clicked'})
 	})
 })
-
