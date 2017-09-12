@@ -1,0 +1,13 @@
+<html>
+<head>
+  <title>Quotes</title>
+</head>
+<body>
+  <h1>Here are the awesome quotes!!!</h1>
+  <% for(let quote of quotes) { %>
+    <p><%= quote.quote %></p>
+    <p>-<%= quote.name %> at <%= quote.createdAt %>
+      <hr>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,48 @@
+>mongo shell different in windows
+
+>when making a insert make sure the syntax spell correct
+
+>have a double check before hit enter
+
+>Have "" make on object to update them.
+
+>Careful use of spacing
+
+>Use {mult:true} to effect everything on the databases
+
+>Have the documentation out always to reference
+
+Query:
+show dbs
+use my_first_db
+db.students.insert({name: "Leo", home_state: "Washington", lucky_number: 2, birthday: {month: 4, day: 23, year: 1991}})
+db.students.insertOne({ name:"Raph", home_state: "Califonria", lucky_numder: 8, birthday: { month: 5, day: 17, year: 1992 } })
+db.students.insertOne({ name:"Donnie", home_state: "Califonria", lucky_numder: 6, birthday: { month: 6, day: 21, year: 1992 } })
+db.students.insertOne({ name:"Mickey", home_state: "New  York", lucky_numder: 20, birthday: { month: 2, day: 1, year: 1993 } })
+db.students.insertOne({ name:"Venus", home_state: "Texas", lucky_numder: 10, birthday: { month: 9, day: 19, year: 1994 } })
+db.students.find().pretty()
+db.students.find({ home_state: "Washington"}).pretty()
+db.students.find({ home_state: "Califonria"}).pretty() <-- Mispell California
+db.students.find({ lucky_number: {$gt:3}}).pretty()
+db.students.find({ lucky_number:{$gt: 3}})
+db.students.find({lucky_number:{$lte:10}}).pretty()
+db.students.find({$and: [{lucky_numder:{$gte:1}}, {lucky_numder:{$lte:9}}]}).pretty()
+db.students.update({},{$set: {intersets: ['coding', 'brunch', 'MongoDB']}},{mult:true} )
+db.students.update({name: "Leo"} {$push: {intersets:{$each:['killing', 'leading', 'training']}}})
+db.students.update({name: "Raph"},{$push: {intersets:{$each:['killing', 'pop-rock', 'training']}}})
+db.students.update({name: "Mickey"},{$push: {intersets:{$each:['Pizza', 'cnilling', 'training']}}})
+db.students.update({name: "Venus"},{$push: {intersets:{$each:['Makeup', 'fashion', 'training']}}})
+db.students.update({name: "Leo"},{$push: {intersets:'taxes'}})
+db.students.update({name: "Leo"},{$pull: {intersets:'taxes'}})
+db.students.remove({$or: [{home_state:"California"}, {home_state:"Washington"}]})
+db.students.find().pretty()
+db.students.remove({$or: [{home_state:"Califonria"}, {home_state:"Washington"}]})
+db.students.remove({name: "Mickey"})
+db.students.remove({$gte:5})
+db.students.remove({lucky_numder: {$gte:5}}, {justOne:true})
+db.students.update({},{$set: {number_of_belt:0}},{mult:true})
+db.students.update({},{$set: {number_of_belt:0}},{mult:true})<--did it again cause prev query
+db.students.update({home_state: "Washington"}, {$inc: {number_of_belt: 1}}, {mult:true})
+db.students.update({},{$rename: {"number_of_belt":"belts_earned"}})
+db.students.update({},{$unset: {lucky_number:""}},{mult:true})
+db.students.update({},{$currentDate: {update_on:true}},{mult:true})
