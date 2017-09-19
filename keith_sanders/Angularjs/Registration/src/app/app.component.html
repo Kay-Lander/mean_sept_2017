@@ -1,0 +1,102 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+</div>
+<div>
+  <div [hidden]="!Success">
+    <p>Thank you registering with us {{ user.first_name }}. We just sent you a confirmnation email at 
+      {{ user.email }}, and we will send all mail to {{ user.address }}, {{ user.state }}. Have a wonderful Day.</p>
+  </div>
+  <form (submit)="onSubmit()" #userForm = "ngForm" id="ngForm" name="myForm">
+      <label>First Name:</label>
+      <input type="text" name="first_name"
+      required
+      minlength="2"
+      maxlength="24"
+      [(ngModel)]="user.first_name"
+      #first_name='ngModel'
+      />
+      <div *ngIf="!first_name.valid">First Name must have 2-24 char. long.</div>
+      <div *ngIf="first_name.valid">First Name OK</div>
+
+      <label>Last Name:</label>
+      <input type="text" name="last_name"
+      required
+      minlength="2"
+      maxlength="24"
+      [(ngModel)]='user.last_name'
+      #last_name='ngModel'
+      />
+      <div *ngIf="!last_name.valid">Last name must have 2-24 char long</div>
+      <div *ngIf="last_name.valid">Last Name OK</div>
+
+      <label>Email:</label>
+      <input type="text" name="email"
+      required
+      minlength="4"
+      maxlength="24"
+      pattern="^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$"
+      [(ngModel)]='user.email'
+      #email='ngModel'
+      />
+      <div *ngIf="!email.valid && email.dirty" >Email must have 4-24 char.</div>
+      <div *ngIf="email.valid">Email approved</div>
+  <br>
+      <label>Password:</label>
+      <input type="password" name="password"
+      required
+      minlength="4"
+      maxlength="24"
+      [(ngModel)]="user.password"
+      #password="ngModel"
+      />
+      <div *ngIf="!password.valid && password.dirty" class="invalid">Password must be at least 4-24 char long</div>
+      <div *ngIf="password.valid" class="valid">Password approved</div>
+
+      <label>Password Confirmnation:</label>
+      <input type="password" name="passwordconfirm"
+      [(ngModel)]="user.passwordconfirm"
+      #passwordconfirm="ngModel"
+      validateEqual="password"
+      />
+      <div *ngIf="!passwordconfirm.valid && (paswordconfirm.dirty || passwordconfirm.touched)" class="invalid">Password must match</div>
+      <div *ngIf="passwordconfirm.valid">Password accepted</div>  
+
+      <label>Street Address:</label>
+      <input type="text" name="address"
+      required
+      minlength="4"
+      maxlength="24"
+      [(ngModel)]='user.address'
+      #address='ngModel'
+      />
+      <div *ngIf="!address.valid">Address must have 4-24 char. </div>
+      <div *ngIf="address.valid">Address is Ok</div>
+
+      <label>City:</label>
+      <input type="text" name="city"
+      required
+      minlength="4"
+      maxlength="24"
+      [(ngModel)]="user.city"
+      #city='ngModel'
+      />
+      <div *ngIf="!city.valid">City must be 4-24 character long, dude</div>
+      <div *ngIf="city.valid">City is valid</div>
+
+      <label>State:</label>
+      <select name="state" required [(ngModel)]="user.state" #state="ngModel">
+        <option *ngFor="let s of states" [value]="s">{{s}}</option>
+      </select>
+
+      <label>I'm feeling lucky:</label>
+      <input type="radio" name="lucky" value="Yes" required>Yes<br>
+      <input type="radio" name="lucky" value="No" required>No<br>
+      
+      <input type="submit" [disabled]='!userForm.form.valid' value="Register">
+    </form>
+</div>
+
+
